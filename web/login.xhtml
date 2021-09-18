@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+         <link rel="stylesheet" href="#{request.contextPath}/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/img/favicon.ico" />
+        <title>JobBoard-login Title</title>
+    </h:head>
+    <h:body>
+       <!-- START: navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light shadow">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">JobBoard</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a
+								class="nav-link dropdown-toggle"
+								href="#"
+								id="navbarDropdown"
+								role="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+							>
+								Support
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Contact Us</a></li>
+								<li><hr class="dropdown-divider" /></li>
+								<li><a class="dropdown-item" href="#">Terms of use</a></li>
+								<li>
+									<a class="dropdown-item" href="#">Privacy Policy</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">About Us</a>
+						</li>
+						<li class="nav-item mx-2">
+							<a class="btn btn-outline-primary rounded-pill mx-1" href="#">
+								Login
+							</a>
+							<a class="btn btn-primary rounded-pill mx-1" href="#">
+								Register
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END: navbar -->
+
+		<main class="container">
+			<div class="row justify-content-center my-5">
+				<!-- START: login form -->
+				<div class="col-md-6">
+					<div class="card shadow mb-4">
+						<div class="card-header bg-secondary text-white">Login Form</div>
+						<div class="card-body">
+							<h:form>
+								<div class="form-floating mb-3">
+                                                                    <h:inputText
+										
+										class="form-control"
+										id="username"
+                                                                                value="#{login.user}"
+									/>
+									<label for="username">email</label>
+								</div>
+								<div class="form-floating">
+                                                                    <h:inputSecret
+										class="form-control"
+										id="password"
+                                                                                value="#{login.pwd}"
+									/>
+									<label for="password">Password</label>
+								</div>
+                                                            <h:commandButton
+									value="Login"
+									class="btn btn-lg btn-primary rounded-pill w-100 my-3"
+                                                                        action="#{login.validateUser()}"
+								/>
+									
+							</h:form>
+						</div>
+					</div>
+				</div>
+				<!-- END: login form -->
+			</div>
+		</main>
+
+		<script src="./js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>
+

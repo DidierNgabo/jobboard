@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="#{request.contextPath}/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/img/favicon.ico" />
+        <title>JobBoard - all jobs</title>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">JobBoard</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                >
+                                Support
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#">Terms of use</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="btn btn-warning rounded-pill mx-1" href="#"> Logout </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END: navbar -->
+
+        <main class="container">
+            <div class="row justify-content-center my-5">
+                <!-- START: login form -->
+                <div class="col-md-9">
+                    <div class="card shadow mb-4">
+                        <div class="card-header bg-secondary text-white">
+                            All Jobs Table
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <h:dataTable  value="${jobM.all}" var="job" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Positions</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Covid Vaccination</td>
+                                            <td>12</td>
+                                            <td>Data Entry</td>
+                                            <td>
+                                                During this COVID vaccination campaign, we need data
+                                                entry personel to record every vaccination
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a href="#" class="btn btn-sm btn-primary">Update</a>
+                                                    <a href="#" class="btn btn-sm btn-warning">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <h:column>
+                                        <f:facet name="header">#</f:facet>
+                                        <h:outputText value="${job.id}"/>
+                                    </h:column>
+                                     <h:column>
+                                        <f:facet name="header">Title</f:facet>
+                                        <h:outputText value="${job.title}"/>
+                                    </h:column>
+                                     <h:column>
+                                        <f:facet name="header"> No positions</f:facet>
+                                        <h:outputText value="${job.positions}"/>
+                                    </h:column>
+                                     <h:column>
+                                        <f:facet name="header">Category</f:facet>
+                                        <h:outputText value="${job.category}"/>
+                                    </h:column>
+                                     <h:column>
+                                        <f:facet name="header">Description</f:facet>
+                                        <h:outputText value="${job.description}"/>
+                                    </h:column>
+                                     <h:column>
+                                        <f:facet name="header">Action</f:facet>
+                                        <h:form>
+                                            <div class="btn-group">
+                                                <h:link outcome="updateJob?id=${job.id}" value="Update" class="btn btn-sm btn-primary" />
+                                            <h:commandButton action="${jobM.Delete(job)}" value="Delete" class="btn btn-sm btn-warning" />
+                                            </div>
+                                        </h:form>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: login form -->
+
+                <!-- START: sidebar -->
+                <div class="col-md-3">
+                    <div class="accordion shadow" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="job-heading">
+                                <button
+                                    class="accordion-button"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#job-collapse"
+                                    aria-expanded="true"
+                                    aria-controls="job-collapse"
+                                    >
+                                    Job
+                                </button>
+                            </h2>
+                            <div
+                                id="job-collapse"
+                                class="accordion-collapse collapse show"
+                                aria-labelledby="job-heading"
+                                data-bs-parent="#accordionExample"
+                                >
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a class="text-decoration-none" href="#">All Jobs</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-decoration-none" href="#">My Jobs</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-decoration-none" href="#">Add Job</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="category-heading">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#category-collapse"
+                                    aria-expanded="false"
+                                    aria-controls="category-collapse"
+                                    >
+                                    Category
+                                </button>
+                            </h2>
+                            <div
+                                id="category-collapse"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="category-heading"
+                                data-bs-parent="#accordionExample"
+                                >
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a class="text-decoration-none" href="#">
+                                                All Categories
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="text-decoration-none" href="#">
+                                                Add Category
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="user-heading">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#user-collapse"
+                                    aria-expanded="false"
+                                    aria-controls="user-collapse"
+                                    >
+                                    Users
+                                </button>
+                            </h2>
+                            <div
+                                id="user-collapse"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="user-heading"
+                                data-bs-parent="#accordionExample"
+                                >
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a class="text-decoration-none" href="#">All Users</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: sidebar -->
+            </div>
+        </main>
+
+        <script src="./js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>
+

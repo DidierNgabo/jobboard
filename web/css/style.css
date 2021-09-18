@@ -1,0 +1,8 @@
+html,
+body {
+	background: whitesmoke;
+}
+
+.carousel-inner {
+	max-height: 50vh;
+}

@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="#{request.contextPath}/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+		<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/img/favicon.ico" />
+		<title>JobBoard</title>
+    </h:head>
+    <h:body>
+        <!-- START: navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">JobBoard</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a
+								class="nav-link dropdown-toggle"
+								href="#"
+								id="navbarDropdown"
+								role="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+							>
+								Support
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Contact Us</a></li>
+								<li><hr class="dropdown-divider" /></li>
+								<li><a class="dropdown-item" href="#">Terms of use</a></li>
+								<li>
+									<a class="dropdown-item" href="#">Privacy Policy</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">About Us</a>
+						</li>
+						<li class="nav-item mx-2">
+							<a class="btn btn-outline-primary rounded-pill mx-1" href="#">
+								Login
+							</a>
+							<a class="btn btn-primary rounded-pill mx-1" href="#">
+								Register
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END: navbar -->
+
+		<!-- START: carousel -->
+		<div
+			id="carouselExampleIndicators"
+			class="carousel slide"
+			data-bs-ride="carousel"
+		>
+			<ol class="carousel-indicators">
+				<li
+					data-bs-target="#carouselExampleIndicators"
+					data-bs-slide-to="0"
+					class="active"
+				></li>
+				<li
+					data-bs-target="#carouselExampleIndicators"
+					data-bs-slide-to="1"
+				></li>
+				<li
+					data-bs-target="#carouselExampleIndicators"
+					data-bs-slide-to="2"
+				></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="#{request.contextPath}/img/slide1.jpg" class="d-block w-100" alt="..." />
+				</div>
+				<div class="carousel-item">
+					<img src="#{request.contextPath}/img/slide2.jpg" class="d-block w-100" alt="..." />
+				</div>
+				<div class="carousel-item">
+					<img src="#{request.contextPath}/img/slide3.jpg" class="d-block w-100" alt="..." />
+				</div>
+			</div>
+			<a
+				class="carousel-control-prev"
+				href="#carouselExampleIndicators"
+				role="button"
+				data-bs-slide="prev"
+			>
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</a>
+			<a
+				class="carousel-control-next"
+				href="#carouselExampleIndicators"
+				role="button"
+				data-bs-slide="next"
+			>
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</a>
+		</div>
+		<!-- END: carousel -->
+
+		<main class="container">
+			<div class="row justify-content-center my-5">
+				<!-- START: search form -->
+				<div class="col-md-9">
+					<div class="card card-body shadow mb-4">
+						<form
+							action="#"
+							method="get"
+							class="row gx-3 gy-2 align-items-center"
+						>
+							<div class="col-md-7">
+								<label
+									class="visually-hidden"
+									for="inlineFormInputGroupUsername"
+								>
+									Keyword
+								</label>
+								<div class="input-group">
+									<div class="input-group-text">#</div>
+									<input
+										type="text"
+										class="form-control"
+										id="inlineFormInputGroupUsername"
+										placeholder="Which job are you looking for?"
+									/>
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<input
+									class="form-control"
+									list="datalistOptions"
+									id="exampleDataList"
+									placeholder="Choose Category..."
+								/>
+								<datalist id="datalistOptions">
+                                                                    <ui:repeat value="${catM.all}" var="item">
+                                                                        <option value="#{item.name}"></option>
+                                                                    </ui:repeat>
+								</datalist>
+                                                                
+                 
+                                
+							</div>
+
+							<div class="col-md-2">
+								<button type="submit" class="btn btn-primary w-100">
+									Search
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- END: search form -->
+
+				<!-- START: job cards -->
+                                <ui:repeat value="${jobM.all}" var="job">
+				<div class="col-md-4">
+					<div class="card shadow my-3">
+						<div class="card-body">
+                                                    <h4><a class="text-decoration-none" href="#">${job.title}</a></h4>
+							<p class="card-text">
+                                                            <b>Description</b> ${job.description}
+							</p>
+                                                    <span class="badge bg-info text-dark">${job.positions}</span>
+							<span class="badge bg-warning text-dark"> Admin</span>
+                                                        <span class="badge bg-success">${job.category}</span>
+						</div>
+					</div>
+				</div>
+                                </ui:repeat>
+	
+				<!-- END: job cards -->
+			</div>
+		</main>
+
+		<!-- START: footer -->
+		<footer class="bg-dark text-white">
+			<div class="container py-5">
+				<div class="row justify-content-center">
+					<div class="col-md-6">
+						<h3>Who we are and what we do</h3>
+						<p>
+							Lorem ipsum dolor, sit amet consectetur adipisicing, elit.
+							Nesciunt quas debitis natus, sit perferendis facere, ullam modi
+							omnis at dolorem. Enim ipsum cum temporibus hic consequuntur
+							facere deleniti, eos optio.
+						</p>
+					</div>
+					<div class="col-md-3">
+						<h3>Quick Links</h3>
+						<ul class="list-unstyled">
+							<li>
+								<a class="text-decoration-none" href="#"> Contact Us </a>
+							</li>
+							<li>
+								<a class="text-decoration-none" href="#"> Terms of Service </a>
+							</li>
+							<li>
+								<a class="text-decoration-none" href="#"> Privacy Policy </a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h3>Our Location</h3>
+						<ul class="list-unstyled">
+							<li>Address: Kigali, M Peace Plaza</li>
+							<li>Telephone: 930564096440</li>
+							<li>Email: info@jobboard.rw</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- END: footer  -->
+
+		<script src="#{request.contextPath}/js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>
+

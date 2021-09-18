@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="#{request.contextPath}/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/img/favicon.ico" />
+        <title>JobBoard - All Categories</title>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">JobBoard</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                >
+                                Support
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#">Terms of use</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="btn btn-warning rounded-pill mx-1" href="#"> Logout </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END: navbar -->
+
+        <main class="container">
+            <div class="row justify-content-center my-5">
+                <!-- START: login form -->
+                <div class="col-md-9">
+                    <div class="card shadow mb-4">
+                        <div class="card-header bg-secondary text-white">
+                            All Categories Table
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <h:dataTable value="${catM.all}" var="category" class="table table-hover table-bordered">
+                                    <h:column>
+                                        <f:facet name="header">#</f:facet>
+                                        <h:outputText value="#{category.id}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Name</f:facet>
+                                        <h:outputText value="#{category.name}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Description</f:facet>
+                                        <h:outputText value="#{category.description}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Action</f:facet>
+                                        <h:form>
+                                        <div class="btn-group">
+                                        <h:link outcome="updateCategory" value="Update" class="btn btn-sm btn-primary" />
+                                        <h:commandButton action="${catM.Delete(category)}" value="Delete" class="btn btn-sm btn-warning" />
+                                        </div>
+                                        </h:form>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: login form -->
+
+                <!-- START: sidebar -->
+                <div class="col-md-3">
+                    <div class="accordion shadow" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="job-heading">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#job-collapse"
+                                    aria-expanded="false"
+                                    aria-controls="job-collapse"
+                                    >
+                                    Job
+                                </button>
+                            </h2>
+                            <div
+                                id="job-collapse"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="job-heading"
+                                data-bs-parent="#accordionExample"
+                                >
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a class="text-decoration-none" href="#">All Jobs</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-decoration-none" href="#">My Jobs</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-decoration-none" href="#">Add Job</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="category-heading">
+                                <button
+                                    class="accordion-button"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#category-collapse"
+                                    aria-expanded="true"
+                                    aria-controls="category-collapse"
+                                    >
+                                    Category
+                                </button>
+                            </h2>
+                            <div
+                                id="category-collapse"
+                                class="accordion-collapse collapse show"
+                                aria-labelledby="category-heading"
+                                data-bs-parent="#accordionExample"
+                                >
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a class="text-decoration-none" href="#">
+                                                All Categories
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="text-decoration-none" href="#">
+                                                Add Category
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="user-heading">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#user-collapse"
+                                    aria-expanded="false"
+                                    aria-controls="user-collapse"
+                                    >
+                                    Users
+                                </button>
+                            </h2>
+                            <div
+                                id="user-collapse"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="user-heading"
+                                data-bs-parent="#accordionExample"
+                                >
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <a class="text-decoration-none" href="#">All Users</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: sidebar -->
+            </div>
+        </main>
+
+        <script src="./js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>
+
